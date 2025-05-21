@@ -12,33 +12,32 @@
 ## Pokretanje backend-a (Spring Boot)
 
 1. U terminalu dođi u backend folder:
-
-
-Pokretanje backend-a (Spring Boot)
-U terminalu dođi u backend folder:
-
+```bash
 cd fitnessify-backend
-Pokreni aplikaciju:
+```
 
+Pokreni aplikaciju:
+```bash
 ./mvnw spring-boot:run
-
+```
 ili, ako nemaš wrapper:
-
+```bash
 mvn spring-boot:run
+```
 
-Backend će biti dostupan na adresi:
-http://localhost:8080/
+Backend će biti dostupan na adresi: http://localhost:8080/
 
-Pokretanje frontend-a (React)
+## Pokretanje frontend-a (React)
 U novom terminalu dođi u frontend folder:
-
+```bash
 cd fitnessify-frontend
-
+```
 Instaliraj ovisnosti:
+```bash
 npm install
-
+```
 Pokreni aplikaciju:
+```bash
 npm start
-
-Frontend će biti dostupan na adresi:
-http://localhost:3000/
+```
+Frontend će biti dostupan na adresi: http://localhost:3000/
