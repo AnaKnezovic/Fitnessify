@@ -1,0 +1,154 @@
+.homepage-bg {
+  background: #fff;
+  min-height: 80vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 44px 0 32px 0;
+}
+.homepage-quick-stats {
+  margin: 18px 0 18px 0;
+  background: #f8fafc;
+  border-radius: 10px;
+  padding: 16px 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+  font-size: 1.06em;
+  align-items: flex-start;
+}
+
+.homepage-main-grid {
+  display: flex;
+  gap: 36px;
+  width: 100%;
+  max-width: 1100px;
+  align-items: stretch;
+  justify-content: center;
+}
+
+.homepage-card {
+  background: #fff;
+  border-radius: 18px;
+  box-shadow: 0 6px 24px rgba(27,191,165,0.09);
+  padding: 44px 38px 32px 38px;
+  min-width: 320px;
+  width: 100%;
+  max-width: 420px;
+  text-align: center;
+  color: #23272f;
+  transition: box-shadow 0.2s;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.homepage-card-right {
+  max-width: 560px;
+  min-width: 320px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  box-shadow: none;
+  background: none;
+}
+
+@media (max-width: 1000px) {
+  .homepage-main-grid {
+    flex-direction: column;
+    gap: 28px;
+    align-items: center;
+  }
+  .homepage-card-right {
+    max-width: 98vw;
+    padding: 0;
+  }
+}
+
+.homepage-title {
+  font-size: 2.1rem;
+  margin-bottom: 24px;
+  font-weight: 700;
+  color: #1bbfa5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.homepage-title-icon {
+  font-size: 1.4em;
+  vertical-align: middle;
+}
+
+.homepage-info-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 1.08rem;
+  padding: 7px 0;
+  border-bottom: 1px solid #f2f2f2;
+  margin-bottom: 0;
+  color: #23272f;
+}
+
+.homepage-info-row:last-child {
+  border-bottom: none;
+}
+
+.homepage-info-icon {
+  color: #1bbfa5;
+  font-size: 1.18em;
+  vertical-align: -2px;
+  margin-right: 6px;
+}
+
+.homepage-bmi-kat {
+  font-size: 0.98em;
+  color: #888;
+  margin-left: 4px;
+}
+
+.homepage-progress-section {
+  margin: 32px 0 8px 0;
+}
+
+.homepage-progress-label {
+  font-weight: 600;
+  margin-bottom: 10px;
+  font-size: 1.07rem;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #23272f;
+}
+
+.homepage-progress-bar-bg {
+  background: #eaf4f3;
+  border-radius: 8px;
+  height: 26px;
+  width: 100%;
+  overflow: hidden;
+  box-shadow: 0 1px 8px #1bbfa525;
+  margin-bottom: 6px;
+}
+
+.homepage-progress-bar-fill {
+  background: linear-gradient(90deg, #1bbfa5 60%, #a8d8d8 100%);
+  height: 100%;
+  transition: width 0.5s cubic-bezier(.4,2,.3,1);
+}
+
+.homepage-progress-text {
+  font-size: 1rem;
+  color: #23272f;
+  margin-bottom: 8px;
+}
+
+.homepage-footer {
+  margin-top: 28px;
+  font-size: 1.08rem;
+  color: #23272f;
+}

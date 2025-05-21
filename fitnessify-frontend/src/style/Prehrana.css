@@ -1,0 +1,148 @@
+.dnevnik-bg-wide {
+  min-height: 100vh;
+  background: #f4f6fa;
+  padding-top: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.dnevnik-card-wide {
+  background: #fff;
+  border-radius: 18px;
+  box-shadow: 0 6px 24px rgba(27,191,165,0.10);
+  padding: 38px 54px 32px 54px;
+  min-width: 400px;
+  width: 100%;
+  max-width: 1350px;
+  margin-bottom: 32px;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.dnevnik-title {
+  font-size: 2.1em;
+  color: #1bbfa5;
+  margin-bottom: 18px;
+  text-align: left;
+  letter-spacing: 1px;
+}
+
+.dnevnik-master-wide {
+  display: flex;
+  gap: 64px;
+  background: #f7fafb;
+  border-radius: 14px;
+  padding: 18px 36px;
+  margin-bottom: 24px;
+  font-size: 1.18em;
+  color: #23272f;
+  justify-content: flex-start;
+}
+
+.dnevnik-controls-wide {
+  display: flex;
+  gap: 18px;
+  margin-bottom: 22px;
+}
+
+.unos-form-wide {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.dnevnik-select, .dnevnik-input, .dnevnik-date {
+  padding: 10px 14px;
+  border-radius: 8px;
+  border: 1.5px solid #b0d9d7;
+  font-size: 1.08em;
+  background: #f9fdfc;
+  transition: border 0.2s;
+}
+
+.dnevnik-select:focus, .dnevnik-input:focus, .dnevnik-date:focus {
+  border: 1.5px solid #1bbfa5;
+  outline: none;
+}
+
+.unos-btn {
+  background: none;
+  border: none;
+  color: inherit;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  min-width: 0;
+}
+
+.unos-btn:focus {
+  outline: none;
+}
+
+.action-btn {
+  min-width: 0;
+  padding: 0 2px;
+}
+
+.dnevnik-msg {
+  color: #e05757;
+  margin-bottom: 8px;
+  font-weight: 600;
+  text-align: center;
+}
+
+.dnevnik-table-wide {
+  width: 100%;
+  border-collapse: collapse;
+  border-radius: 14px;
+  overflow: hidden;
+  background: #f9fdfc;
+  font-size: 1.09em;
+  margin-top: 18px;
+}
+
+.dnevnik-table-wide th, .dnevnik-table-wide td {
+  border: 1px solid #e6e6e6;
+  padding: 13px 10px;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.dnevnik-table-wide th {
+  background: #f0f2f4;
+  color: #23272f;
+  font-weight: 600;
+  border: none;
+  font-size: 1.08em;
+}
+
+.dnevnik-table-wide tr:nth-child(even) {
+  background: #f7fafb;
+}
+
+.statistika-box-wide {
+  display: flex;
+  gap: 22px;
+  font-size: 1.14em;
+  margin: 14px 0 8px 0;
+  flex-wrap: wrap;
+}
+
+.statistika {
+  padding: 4px 14px;
+  border-radius: 10px;
+  font-weight: 500;
+  background: #f1f1f1;
+  color: #23272f;
+}
+
+.ucitavanje, .nema-unosa {
+  color: #888;
+  text-align: center;
+  padding: 18px 0;
+}

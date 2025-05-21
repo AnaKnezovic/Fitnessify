@@ -1,0 +1,70 @@
+.detalji-klijenta-bg {
+  min-height: 90vh;
+  background: #f4f6fa;
+  padding-top: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.detalji-klijenta-card {
+  background: #fff;
+  border-radius: 18px;
+  box-shadow: 0 6px 24px rgba(27,191,165,0.10);
+  padding: 32px 32px 22px 32px;
+  min-width: 320px;
+  width: 100%;
+  max-width: 520px;
+  margin-bottom: 32px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.detalji-klijent-info {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+}
+
+.detalji-klijent-avatar {
+  background: #e9f7f5;
+  border-radius: 50%;
+  width: 64px;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.detalji-klijent-ime {
+  font-size: 1.5em;
+  color: #1bbfa5;
+  margin-bottom: 8px;
+  margin-top: 0;
+}
+
+.detalji-klijent-atribut {
+  font-size: 1.07em;
+  color: #23272f;
+  margin-bottom: 5px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.detalji-klijent-section {
+  width: 100%;
+  max-width: 800px;
+  margin-bottom: 28px;
+}
+
+@media (max-width: 700px) {
+  .detalji-klijenta-card {
+    padding: 18px 6vw 18px 6vw;
+    max-width: 99vw;
+  }
+  .detalji-klijent-section {
+    max-width: 99vw;
+  }
+}

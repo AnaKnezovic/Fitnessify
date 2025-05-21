@@ -1,0 +1,110 @@
+.assign-plan-bg {
+  min-height: 85vh;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  background: #f4f6fa;
+  padding-top: 40px;
+}
+
+.assign-plan-card {
+  background: #fff;
+  border-radius: 18px;
+  box-shadow: 0 6px 24px rgba(27,191,165,0.09);
+  padding: 38px 38px 32px 38px;
+  min-width: 320px;
+  width: 100%;
+  max-width: 440px;
+  margin-bottom: 40px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.assign-plan-title {
+  font-size: 2rem;
+  color: #1bbfa5;
+  margin-bottom: 26px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.assign-plan-form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  width: 100%;
+  align-items: stretch;
+  margin-bottom: 18px;
+}
+
+.assign-plan-form label {
+  display: block;
+  margin-bottom: 6px;
+  color: #1bbfa5;
+  font-weight: 600;
+  text-align: left;
+}
+
+.assign-plan-form select {
+  width: 100%;
+  padding: 8px 12px;
+  border-radius: 7px;
+  border: 1.5px solid #b0d9d7;
+  font-size: 1rem;
+  background: #f9fdfc;
+  transition: border 0.2s;
+  margin-bottom: 2px;
+}
+
+.assign-plan-form select:focus {
+  border: 1.5px solid #1bbfa5;
+  outline: none;
+}
+
+.assign-plan-btn {
+  background: linear-gradient(90deg, #1bbfa5, #53a89c);
+  color: #fff;
+  border: none;
+  border-radius: 9px;
+  font-size: 1.08em;
+  font-weight: 600;
+  padding: 10px 0;
+  width: 100%;
+  cursor: pointer;
+  transition: background 0.18s, color 0.18s, box-shadow 0.16s;
+  box-shadow: 0 1.5px 10px #1bbfa533;
+  margin-top: 10px;
+}
+
+.assign-plan-btn:hover {
+  background: linear-gradient(90deg, #53a89c, #1bbfa5);
+  color: #fff;
+  box-shadow: 0 4px 16px #1bbfa520;
+}
+
+.assign-plan-msg {
+  margin-top: 18px;
+  font-size: 1.07em;
+  color: #1bbfa5;
+  font-weight: 600;
+}
+
+.assign-plan-input {
+  width: 100%;
+  margin-bottom: 10px;
+  padding: 8px 12px;
+  border-radius: 7px;
+  border: 1.5px solid #b0d9d7;
+  font-size: 1rem;
+  background: #f9fdfc;
+  transition: border 0.2s;
+}
+
+.assign-plan-input:focus {
+  border: 1.5px solid #1bbfa5;
+  outline: none;
+}

@@ -1,0 +1,57 @@
+.plan-bg {
+  min-height: 85vh;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  background: #f4f6fa;
+  padding-top: 40px;
+}
+
+.plan-card {
+  background: #fff;
+  border-radius: 18px;
+  box-shadow: 0 6px 24px rgba(27,191,165,0.09);
+  padding: 38px 38px 28px 38px;
+  min-width: 320px;
+  width: 100%;
+  max-width: 700px;
+  margin-bottom: 40px;
+  text-align: center;
+}
+
+.plan-title {
+  font-size: 2rem;
+  color: #1bbfa5;
+  margin-bottom: 26px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.plan-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 1.08rem;
+  background: #f9fdfc;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 2px 12px rgba(27,191,165,0.07);
+}
+
+.plan-table th, .plan-table td {
+  border: 1px solid #e6e6e6;
+  padding: 12px 8px;
+  text-align: center;
+}
+
+.plan-table th {
+  background: #1bbfa5;
+  color: #fff;
+  font-weight: 600;
+  border: none;
+}
+
+.plan-table tr:nth-child(even) {
+  background: #f4f6fa;
+}
