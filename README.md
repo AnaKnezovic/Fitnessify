@@ -6,8 +6,22 @@
 - npm (preporučeno v8 ili novije)
 - Java 17 ili novija
 - Maven (za backend)
+- PostreSQL (baza podataka)
 
 ---
+## Korištenje PostgreSQL baze
+1. Kreiranje postgresql baze podataka pod nazivom npr. fitnessify_db
+   
+2. U folderu application.properties urediti podatke:
+   
+```
+spring.datasource.url=jdbc:postgresql://localhost:PORT/fitnessify_db
+spring.datasource.username=TVOJ_USERNAME
+spring.datasource.password=TVOJA_LOZINKA
+spring.datasource.driver-class-name=org.postgresql.Driver
+spring.jpa.hibernate.ddl-auto=update
+spring.jpa.database-platform=org.hibernate.dialect.PostgreSQLDialect
+```
 
 ## Pokretanje backend-a (Spring Boot)
 
