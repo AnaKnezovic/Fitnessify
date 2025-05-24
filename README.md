@@ -34,10 +34,6 @@ cd fitnessify-backend
 ```bash
 ./mvnw spring-boot:run
 ```
-ili, ako nemaš wrapper:
-```bash
-mvn spring-boot:run
-```
 
 Backend će biti dostupan na adresi: http://localhost:8080/
 
