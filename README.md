@@ -30,7 +30,7 @@ spring.jpa.database-platform=org.hibernate.dialect.PostgreSQLDialect
 cd fitnessify-backend
 ```
 
-Pokreni aplikaciju:
+2. Pokreni aplikaciju:
 ```bash
 ./mvnw spring-boot:run
 ```
@@ -42,15 +42,15 @@ mvn spring-boot:run
 Backend će biti dostupan na adresi: http://localhost:8080/
 
 ## Pokretanje frontend-a (React)
-U novom terminalu dođi u frontend folder:
+1. U novom terminalu dođi u frontend folder:
 ```bash
 cd fitnessify-frontend
 ```
-Instaliraj ovisnosti:
+2. Instaliraj ovisnosti:
 ```bash
 npm install
 ```
-Pokreni aplikaciju:
+3. Pokreni aplikaciju:
 ```bash
 npm start
 ```
