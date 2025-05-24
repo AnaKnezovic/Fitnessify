@@ -12,7 +12,7 @@
 ## Korištenje PostgreSQL baze
 1. Kreiranje postgresql baze podataka pod nazivom npr. fitnessify_db
    
-2. U folderu application.properties urediti podatke:
+2. U folderu application.properties urediti podatke. Zamijeni TVOJ_USERNAME i TVOJA_LOZINKA sa svojim podacima, a po potrebi prilagodi port (default je 5432).
    
 ```
 spring.datasource.url=jdbc:postgresql://localhost:PORT/fitnessify_db
