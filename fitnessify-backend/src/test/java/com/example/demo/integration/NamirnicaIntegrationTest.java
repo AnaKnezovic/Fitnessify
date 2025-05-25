@@ -106,4 +106,58 @@ class NamirnicaIntegrationTest {
         mockMvc.perform(get("/api/namirnice/{id}", id))
             .andExpect(status().isNotFound());
     }
+
+    @Test
+    @DisplayName("POST /api/namirnice – fail on duplicate naziv")
+    void create_duplicateNaziv() throws Exception {
+        String json = """
+            {
+            "naziv":"Banana",
+            "kalorije":99,
+            "proteini":1.0,
+            "ugljikohidrati":20.0,
+            "masti":0.5
+            }
+            """;
+        mockMvc.perform(post("/api/namirnice")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(json))
+            .andExpect(status().isOk());
+
+        mockMvc.perform(post("/api/namirnice")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(json))
+            .andExpect(status().isForbidden())
+            .andExpect(content().string(containsString("već postoji")));
+    }
+
+    @Test
+    @DisplayName("PUT /api/namirnice/{id} – fail on update to duplicate naziv")
+    void update_duplicateNaziv() throws Exception {
+        Namirnica n1 = new Namirnica();
+        n1.setNaziv("Prva");
+        n1.setKalorije(100);
+        n1 = namirnicaRepo.save(n1);
+
+        Namirnica n2 = new Namirnica();
+        n2.setNaziv("Druga");
+        n2.setKalorije(200);
+        n2 = namirnicaRepo.save(n2);
+
+        String updateJson = """
+            {
+            "naziv":"Prva",
+            "kalorije":222,
+            "proteini":2.2,
+            "ugljikohidrati":3.3,
+            "masti":1.1
+            }
+            """;
+
+        mockMvc.perform(put("/api/namirnice/{id}", n2.getId())
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(updateJson))
+            .andExpect(status().isForbidden())
+            .andExpect(content().string(containsString("već postoji")));
+    }
 }

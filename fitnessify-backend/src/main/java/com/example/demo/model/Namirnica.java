@@ -23,7 +23,7 @@ public class Namirnica {
     @Column(name = "Namirnica_ID")
     private Long id;
 
-    @Column(name = "Naziv")
+    @Column(name = "Naziv", unique = true)
     private String naziv;
 
     @Column(name = "Kalorije")

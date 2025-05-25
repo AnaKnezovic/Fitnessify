@@ -141,5 +141,36 @@ class NamirnicaControllerTest {
         mockMvc.perform(delete("/api/namirnice/8"))
             .andExpect(status().isForbidden());
     }
+
+    @Test
+    @DisplayName("POST /api/namirnice – fail if naziv already exists")
+    void create_duplicateNaziv() throws Exception {
+        Namirnica toCreate = makeNamirnica(null, "Banana", 50);
+        toCreate.setId(null);
+
+        when(namirnicaRepo.existsByNaziv("Banana")).thenReturn(true);
+
+        mockMvc.perform(post("/api/namirnice")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(objectMapper.writeValueAsString(toCreate)))
+            .andExpect(status().isForbidden());
+    }
+
+    @Test
+    @DisplayName("PUT /api/namirnice/{id} – fail when updating to existing name")
+    void update_duplicateNaziv() throws Exception {
+        Namirnica existing = makeNamirnica(5L, "Staro", 10);
+        Namirnica details  = makeNamirnica(null, "Banana", 20);
+
+        when(namirnicaRepo.findById(5L)).thenReturn(Optional.of(existing));
+        when(unosRepo.existsByNamirnica(existing)).thenReturn(false);
+        when(namirnicaRepo.existsByNaziv("Banana")).thenReturn(true);
+
+        mockMvc.perform(put("/api/namirnice/5")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(objectMapper.writeValueAsString(details)))
+            .andExpect(status().isForbidden()); 
+    }
+
 }
 

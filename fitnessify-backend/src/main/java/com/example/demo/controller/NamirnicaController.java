@@ -37,10 +37,13 @@ public class NamirnicaController {
     // CREATE
     @PostMapping
     public Namirnica createNamirnica(@RequestBody Namirnica namirnica) {
+        if (namirnicaRepository.existsByNaziv(namirnica.getNaziv())) {
+            throw new RuntimeException("Namirnica s tim nazivom već postoji!");
+        }
         return namirnicaRepository.save(namirnica);
     }
 
-    // UPDATE
+
     @PutMapping("/{id}")
     public ResponseEntity<Namirnica> updateNamirnica(@PathVariable Long id, @RequestBody Namirnica namirnicaDetails) {
         Namirnica namirnica = namirnicaRepository.findById(id)
@@ -49,6 +52,11 @@ public class NamirnicaController {
         // Provjeri je li namirnica povezana s unosima
         if (unosNamirniceRepository.existsByNamirnica(namirnica)) {
             throw new RuntimeException("Nije moguće urediti namirnicu koja se koristi u dnevniku!");
+        }
+
+        if (!namirnica.getNaziv().equals(namirnicaDetails.getNaziv())
+                && namirnicaRepository.existsByNaziv(namirnicaDetails.getNaziv())) {
+            throw new RuntimeException("Namirnica s tim nazivom već postoji!");
         }
 
         namirnica.setNaziv(namirnicaDetails.getNaziv());
