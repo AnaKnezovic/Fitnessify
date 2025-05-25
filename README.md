@@ -51,3 +51,13 @@ npm install
 npm start
 ```
 Frontend će biti dostupan na adresi: http://localhost:3000/
+
+## Pokretanje testova
+1. U novom terminalu dođi u backend folder:
+```bash
+cd fitnessify-backend
+```
+2. Pokreni sljedeću naredbu:
+```bash
+mvn test
+```
