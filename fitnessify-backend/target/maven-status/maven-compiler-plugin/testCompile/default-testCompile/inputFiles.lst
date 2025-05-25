@@ -11,3 +11,12 @@ C:\Users\marik\Desktop\Fitnessify3\Fitnessify\fitnessify-backend\src\test\java\c
 C:\Users\marik\Desktop\Fitnessify3\Fitnessify\fitnessify-backend\src\test\java\com\example\demo\DemoApplicationTests.java
 C:\Users\marik\Desktop\Fitnessify3\Fitnessify\fitnessify-backend\src\test\java\com\example\demo\integration\AktivnostIntegrationTest.java
 C:\Users\marik\Desktop\Fitnessify3\Fitnessify\fitnessify-backend\src\test\java\com\example\demo\integration\NamirnicaIntegrationTest.java
+C:\Users\marik\Desktop\Fitnessify3\Fitnessify\fitnessify-backend\src\test\java\com\example\demo\repository\AktivnostRepositoryTest.java
+C:\Users\marik\Desktop\Fitnessify3\Fitnessify\fitnessify-backend\src\test\java\com\example\demo\repository\KlijentPlanRepositoryTest.java
+C:\Users\marik\Desktop\Fitnessify3\Fitnessify\fitnessify-backend\src\test\java\com\example\demo\repository\KlijentTrenerRepositoryTest.java
+C:\Users\marik\Desktop\Fitnessify3\Fitnessify\fitnessify-backend\src\test\java\com\example\demo\repository\KorisnikAktivnostRepositoryTest.java
+C:\Users\marik\Desktop\Fitnessify3\Fitnessify\fitnessify-backend\src\test\java\com\example\demo\repository\KorisnikRepositoryTest.java
+C:\Users\marik\Desktop\Fitnessify3\Fitnessify\fitnessify-backend\src\test\java\com\example\demo\repository\PrehrambeniDnevnikRepositoryTest.java
+C:\Users\marik\Desktop\Fitnessify3\Fitnessify\fitnessify-backend\src\test\java\com\example\demo\repository\UnosNamirniceRepositoryTest.java
+C:\Users\marik\Desktop\Fitnessify3\Fitnessify\fitnessify-backend\src\test\java\com\example\demo\service\AuthServiceTest.java
+C:\Users\marik\Desktop\Fitnessify3\Fitnessify\fitnessify-backend\src\test\java\com\example\demo\service\StatistikaServiceTest.java

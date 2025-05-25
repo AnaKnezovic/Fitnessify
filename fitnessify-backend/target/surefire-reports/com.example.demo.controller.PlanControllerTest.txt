@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: com.example.demo.controller.PlanControllerTest
 -------------------------------------------------------------------------------
-Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.736 s -- in com.example.demo.controller.PlanControllerTest
+Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.890 s -- in com.example.demo.controller.PlanControllerTest
