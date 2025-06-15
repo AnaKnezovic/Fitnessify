@@ -2,10 +2,11 @@ package com.example.demo.camunda.delegates;
 
 import org.camunda.bpm.engine.delegate.DelegateExecution;
 import org.camunda.bpm.engine.delegate.JavaDelegate;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
 import com.example.demo.model.KlijentTrenerId;
 import com.example.demo.repository.KlijentTrenerRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 
 @Component("obavijestiKlijentaDelegate")
 public class ObavijestiKlijentaDelegate implements JavaDelegate {

@@ -97,6 +97,54 @@ const MojiKlijenti = () => {
         />
       </div>
 
+      {/* TABLICA TASKOVA */}
+      <div style={{margin: "30px 0"}}>
+        <h3>Zahtjevi za odobravanje</h3>
+        <table className="trainer-table-minimal">
+          <thead>
+            <tr>
+              <th>Klijent</th>
+              <th>Email</th>
+              <th>Naziv zadatka</th>
+              <th>Akcija</th>
+            </tr>
+          </thead>
+          <tbody>
+            {tasks.length === 0 ? (
+              <tr>
+                <td colSpan={4} style={{ textAlign: "center", color: "#888" }}>
+                  Nema zahtjeva za odobravanje.
+                </td>
+              </tr>
+            ) : (
+              tasks.map(task => (
+                <tr key={task.id}>
+                  <td>{task.klijentIme} {task.klijentPrezime}</td>
+                  <td>{task.klijentEmail}</td>
+                  <td>{task.name}</td>
+                  <td>
+                    <button
+                      className="trainer-btn accept-btn"
+                      onClick={() => completeTask(task.id, "PRIHVACENO")}
+                    >
+                      Prihvati
+                    </button>
+                    <button
+                      className="trainer-btn reject-btn"
+                      style={{ marginLeft: 8 }}
+                      onClick={() => completeTask(task.id, "ODBIJENO")}
+                    >
+                      Odbij
+                    </button>
+                  </td>
+                </tr>
+              ))
+            )}
+          </tbody>
+        </table>
+      </div>
+
+      {/* TABLICA KLIJENATA */}
       <table className="trainer-table-minimal">
         <thead>
           <tr>
@@ -115,64 +163,44 @@ const MojiKlijenti = () => {
               </td>
             </tr>
           ) : (
-            filtriraniKlijenti.map(({ klijent, status, datumPovezivanja }, idx) => {
-              // Pronađi task za ovog klijenta (ako postoji)
-              const task = tasks.find(t => t.klijentId === String(klijent.id));
-              return (
-                <tr key={idx}>
-                  <td>{klijent.korisnik?.ime} {klijent.korisnik?.prezime}</td>
-                  <td>{klijent.korisnik?.email}</td>
-                  <td>
-                    <span style={{
-                      color: statusBoje[status] || "#23272f",
-                      fontWeight: 600,
-                      display: "inline-flex",
-                      alignItems: "center",
-                      gap: 6
-                    }}>
-                      {statusIkona[status]} {status}
-                    </span>
-                  </td>
-                  <td>{datumPovezivanja}</td>
-                  <td>
-                    {task ? (
-                      <div className="trainer-action-group">
-                        <button
-                          className="trainer-btn accept-btn"
-                          onClick={() => completeTask(task.id, "PRIHVACENO")}
-                        >
-                          Prihvati
+            filtriraniKlijenti.map(({ klijent, status, datumPovezivanja }, idx) => (
+              <tr key={idx}>
+                <td>{klijent.korisnik?.ime} {klijent.korisnik?.prezime}</td>
+                <td>{klijent.korisnik?.email}</td>
+                <td>
+                  <span style={{
+                    color: statusBoje[status] || "#23272f",
+                    fontWeight: 600,
+                    display: "inline-flex",
+                    alignItems: "center",
+                    gap: 6
+                  }}>
+                    {statusIkona[status]} {status}
+                  </span>
+                </td>
+                <td>{datumPovezivanja}</td>
+                <td>
+                  {status === "PRIHVACENO" && (
+                    <div className="trainer-action-group">
+                      <Link to={`/klijenti/${klijent.id}`}>
+                        <button className="trainer-btn details-btn">
+                          Detalji
                         </button>
-                        <button
-                          className="trainer-btn reject-btn"
-                          style={{ marginLeft: 8 }}
-                          onClick={() => completeTask(task.id, "ODBIJENO")}
-                        >
-                          Odbij
-                        </button>
-                      </div>
-                    ) : status === "PRIHVACENO" ? (
-                      <div className="trainer-action-group">
-                        <Link to={`/klijenti/${klijent.id}`}>
-                          <button className="trainer-btn details-btn">
-                            Detalji
-                          </button>
-                        </Link>
-                        <button
-                          className="trainer-btn reject-btn"
-                          style={{ marginLeft: 8, display: "flex", alignItems: "center", gap: 4 }}
-                          onClick={() => prekiniOdnos(klijent.id)}
-                          title="Prekini odnos"
-                        >
-                          <MdRemoveCircleOutline style={{ fontSize: "1.2em" }} />
-                          Prekini odnos
-                        </button>
-                      </div>
-                    ) : null}
-                  </td>
-                </tr>
-              );
-            })
+                      </Link>
+                      <button
+                        className="trainer-btn reject-btn"
+                        style={{ marginLeft: 8, display: "flex", alignItems: "center", gap: 4 }}
+                        onClick={() => prekiniOdnos(klijent.id)}
+                        title="Prekini odnos"
+                      >
+                        <MdRemoveCircleOutline style={{ fontSize: "1.2em" }} />
+                        Prekini odnos
+                      </button>
+                    </div>
+                  )}
+                </td>
+              </tr>
+            ))
           )}
         </tbody>
       </table>

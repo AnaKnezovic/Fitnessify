@@ -1,16 +1,29 @@
 package com.example.demo.controller;
 
-import com.example.demo.model.*;
-import com.example.demo.repository.*;
+import java.time.LocalDate;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import org.camunda.bpm.engine.RuntimeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
-import java.util.HashMap;
-import java.time.LocalDate;
-import java.util.List;
-import java.util.Map;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.example.demo.model.Klijent;
+import com.example.demo.model.KlijentTrener;
+import com.example.demo.model.KlijentTrenerId;
+import com.example.demo.model.Trener;
+import com.example.demo.repository.KlijentRepository;
+import com.example.demo.repository.KlijentTrenerRepository;
+import com.example.demo.repository.TrenerRepository;
 
 @RestController
 @RequestMapping("/api/klijent-trener")
@@ -53,7 +66,6 @@ public class KlijentTrenerController {
         veza.setStatus("Čeka");
         repo.save(veza);
 
-        // Pokreni Camunda proces
         Map<String, Object> variables = new HashMap<>();
         variables.put("klijentId", klijentId.toString());
         variables.put("trenerId", trenerId.toString());

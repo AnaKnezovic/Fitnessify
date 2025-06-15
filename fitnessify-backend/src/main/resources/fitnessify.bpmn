@@ -42,7 +42,7 @@
       <bpmn:outgoing>Flow_1nun5ji</bpmn:outgoing>
       <bpmn:outgoing>Flow_0om4kua</bpmn:outgoing>
     </bpmn:parallelGateway>
-    <bpmn:userTask id="Activity_0r4cfrp" name="TRENER ODLUČUJE">
+    <bpmn:userTask id="Activity_0r4cfrp" name="TRENER ODLUČUJE" camunda:assignee="${trenerId}">
       <bpmn:extensionElements>
         <camunda:properties>
           <camunda:property />
