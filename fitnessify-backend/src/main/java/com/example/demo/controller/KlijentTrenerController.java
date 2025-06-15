@@ -2,10 +2,12 @@ package com.example.demo.controller;
 
 import com.example.demo.model.*;
 import com.example.demo.repository.*;
+
+import org.camunda.bpm.engine.RuntimeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
+import java.util.HashMap;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Map;
@@ -13,10 +15,28 @@ import java.util.Map;
 @RestController
 @RequestMapping("/api/klijent-trener")
 public class KlijentTrenerController {
+    @Autowired private RuntimeService runtimeService;
     @Autowired private KlijentTrenerRepository repo;
     @Autowired private KlijentRepository klijentRepo;
     @Autowired private TrenerRepository trenerRepo;
 
+    // @PostMapping
+    // public ResponseEntity<?> povezi(@RequestBody Map<String, Object> body) {
+    //     Long klijentId = Long.valueOf(body.get("klijentId").toString());
+    //     Long trenerId = Long.valueOf(body.get("trenerId").toString());
+    //     Klijent klijent = klijentRepo.findById(klijentId).orElseThrow();
+    //     Trener trener = trenerRepo.findById(trenerId).orElseThrow();
+
+    //     KlijentTrenerId id = new KlijentTrenerId(klijentId, trenerId);
+    //     KlijentTrener veza = new KlijentTrener();
+    //     veza.setId(id);
+    //     veza.setKlijent(klijent);
+    //     veza.setTrener(trener);
+    //     veza.setDatumPovezivanja(LocalDate.now());
+    //     veza.setStatus("Čeka");
+    //     repo.save(veza);
+    //     return ResponseEntity.ok(veza);
+    // }
     @PostMapping
     public ResponseEntity<?> povezi(@RequestBody Map<String, Object> body) {
         Long klijentId = Long.valueOf(body.get("klijentId").toString());
@@ -32,8 +52,16 @@ public class KlijentTrenerController {
         veza.setDatumPovezivanja(LocalDate.now());
         veza.setStatus("Čeka");
         repo.save(veza);
+
+        // Pokreni Camunda proces
+        Map<String, Object> variables = new HashMap<>();
+        variables.put("klijentId", klijentId.toString());
+        variables.put("trenerId", trenerId.toString());
+        runtimeService.startProcessInstanceByKey("Process_0ot2n3j", variables);
+
         return ResponseEntity.ok(veza);
     }
+
 
     @GetMapping("/moji")
     public List<KlijentTrener> moji(@RequestParam Long klijentId) {

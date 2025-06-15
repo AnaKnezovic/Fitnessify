@@ -9,4 +9,7 @@ import java.util.List;
 public interface KlijentTrenerRepository extends JpaRepository<KlijentTrener, KlijentTrenerId> {
     List<KlijentTrener> findByKlijentId(Long klijentId);
     List<KlijentTrener> findByTrenerId(Long trenerId);
+    List<KlijentTrener> findByTrener_IdAndStatus(Long trenerId, String status);
+    List<KlijentTrener> findByKlijent_Id(Long klijentId);
+    List<KlijentTrener> findAll();
 }

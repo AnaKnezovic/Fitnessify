@@ -5,45 +5,59 @@ import { Link } from "react-router-dom";
 import "../style/MojiKlijenti.css";
 
 const statusBoje = {
-  "Prihvaćeno": "#4bcf5a",
+  "PRIHVACENO": "#4bcf5a",
   "Čeka": "#f7b731",
-  "Odbijeno": "#e05757"
+  "ODBIJENO": "#e05757",
+  "TIMEOUT": "#e05757"
 };
 
 const statusIkona = {
-  "Prihvaćeno": <MdCheckCircle style={{ color: "#4bcf5a", verticalAlign: "middle" }} />,
+  "PRIHVACENO": <MdCheckCircle style={{ color: "#4bcf5a", verticalAlign: "middle" }} />,
   "Čeka": <MdPending style={{ color: "#f7b731", verticalAlign: "middle" }} />,
-  "Odbijeno": <MdCancel style={{ color: "#e05757", verticalAlign: "middle" }} />
+  "ODBIJENO": <MdCancel style={{ color: "#e05757", verticalAlign: "middle" }} />,
+  "TIMEOUT": <MdCancel style={{ color: "#e05757", verticalAlign: "middle" }} />
 };
 
 const MojiKlijenti = () => {
   const trenerId = localStorage.getItem("korisnikId");
   const [klijenti, setKlijenti] = useState([]);
+  const [tasks, setTasks] = useState([]);
   const [search, setSearch] = useState("");
   const [poruka, setPoruka] = useState("");
 
   useEffect(() => {
     fetchKlijenti();
+    fetchTasks();
     // eslint-disable-next-line
   }, [trenerId]);
 
   const fetchKlijenti = async () => {
-    const res = await axiosInstance.get(`/klijent-trener/moji-klijenti?trenerId=${trenerId}`);
-    setKlijenti(res.data);
+    try {
+      const res = await axiosInstance.get(`/klijent-trener/moji-klijenti?trenerId=${trenerId}`);
+      setKlijenti(res.data);
+    } catch {
+      setKlijenti([]);
+    }
   };
 
-  const potvrdiVezu = async (klijentId, status) => {
+  const fetchTasks = async () => {
+    try {
+      const res = await axiosInstance.get(`/camunda-tasks/for-trainer?trenerId=${trenerId}`);
+      setTasks(res.data);
+    } catch {
+      setTasks([]);
+    }
+  };
+
+  const completeTask = async (taskId, status) => {
     setPoruka("");
     try {
-      await axiosInstance.patch("/klijent-trener/potvrdi", {
-        klijentId,
-        trenerId,
-        status
-      });
-      await fetchKlijenti();
-      setPoruka(status === "Prihvaćeno" ? "Veza prihvaćena." : "Veza odbijena.");
-    } catch (e) {
-      setPoruka("Greška pri potvrdi veze.");
+      await axiosInstance.post(`/camunda-tasks/${taskId}/complete`, { statusZahtjeva: status });
+      setPoruka("Zadatak odrađen.");
+      fetchTasks();
+      fetchKlijenti();
+    } catch {
+      setPoruka("Greška pri odrađivanju zadatka.");
     }
   };
 
@@ -56,7 +70,7 @@ const MojiKlijenti = () => {
       });
       await fetchKlijenti();
       setPoruka("Odnos s klijentom je prekinut.");
-    } catch (e) {
+    } catch {
       setPoruka("Greška pri prekidu odnosa.");
     }
   };
@@ -82,6 +96,7 @@ const MojiKlijenti = () => {
           className="trainer-search-input"
         />
       </div>
+
       <table className="trainer-table-minimal">
         <thead>
           <tr>
@@ -100,60 +115,64 @@ const MojiKlijenti = () => {
               </td>
             </tr>
           ) : (
-            filtriraniKlijenti.map(({ klijent, status, datumPovezivanja }, idx) => (
-              <tr key={idx}>
-                <td>{klijent.korisnik?.ime} {klijent.korisnik?.prezime}</td>
-                <td>{klijent.korisnik?.email}</td>
-                <td>
-                  <span style={{
-                    color: statusBoje[status] || "#23272f",
-                    fontWeight: 600,
-                    display: "inline-flex",
-                    alignItems: "center",
-                    gap: 6
-                  }}>
-                    {statusIkona[status]} {status}
-                  </span>
-                </td>
-                <td>{datumPovezivanja}</td>
-                <td>
-                  {status === "Čeka" && (
-                    <div className="trainer-action-group">
-                      <button
-                        className="trainer-btn accept-btn"
-                        onClick={() => potvrdiVezu(klijent.id, "Prihvaćeno")}
-                      >
-                        Prihvati
-                      </button>
-                      <button
-                        className="trainer-btn reject-btn"
-                        onClick={() => potvrdiVezu(klijent.id, "Odbijeno")}
-                      >
-                        Odbij
-                      </button>
-                    </div>
-                  )}
-                  {status === "Prihvaćeno" && (
-                    <div className="trainer-action-group">
-                      <Link to={`/klijenti/${klijent.id}`}>
-                        <button className="trainer-btn details-btn">
-                          Detalji
+            filtriraniKlijenti.map(({ klijent, status, datumPovezivanja }, idx) => {
+              // Pronađi task za ovog klijenta (ako postoji)
+              const task = tasks.find(t => t.klijentId === String(klijent.id));
+              return (
+                <tr key={idx}>
+                  <td>{klijent.korisnik?.ime} {klijent.korisnik?.prezime}</td>
+                  <td>{klijent.korisnik?.email}</td>
+                  <td>
+                    <span style={{
+                      color: statusBoje[status] || "#23272f",
+                      fontWeight: 600,
+                      display: "inline-flex",
+                      alignItems: "center",
+                      gap: 6
+                    }}>
+                      {statusIkona[status]} {status}
+                    </span>
+                  </td>
+                  <td>{datumPovezivanja}</td>
+                  <td>
+                    {task ? (
+                      <div className="trainer-action-group">
+                        <button
+                          className="trainer-btn accept-btn"
+                          onClick={() => completeTask(task.id, "PRIHVACENO")}
+                        >
+                          Prihvati
                         </button>
-                      </Link>
-                      <button
-                        className="trainer-btn reject-btn"
-                        style={{ marginLeft: 8, display: "flex", alignItems: "center", gap: 4 }}
-                        onClick={() => prekiniOdnos(klijent.id)}
-                        title="Prekini odnos"
-                      >
-                        <MdRemoveCircleOutline style={{ fontSize: "1.2em" }} />
-                        Prekini odnos
-                      </button>
-                    </div>
-                  )}
-                </td>
-              </tr>
-            ))
+                        <button
+                          className="trainer-btn reject-btn"
+                          style={{ marginLeft: 8 }}
+                          onClick={() => completeTask(task.id, "ODBIJENO")}
+                        >
+                          Odbij
+                        </button>
+                      </div>
+                    ) : status === "PRIHVACENO" ? (
+                      <div className="trainer-action-group">
+                        <Link to={`/klijenti/${klijent.id}`}>
+                          <button className="trainer-btn details-btn">
+                            Detalji
+                          </button>
+                        </Link>
+                        <button
+                          className="trainer-btn reject-btn"
+                          style={{ marginLeft: 8, display: "flex", alignItems: "center", gap: 4 }}
+                          onClick={() => prekiniOdnos(klijent.id)}
+                          title="Prekini odnos"
+                        >
+                          <MdRemoveCircleOutline style={{ fontSize: "1.2em" }} />
+                          Prekini odnos
+                        </button>
+                      </div>
+                    ) : null}
+                  </td>
+                </tr>
+              );
+            })
           )}
         </tbody>
       </table>

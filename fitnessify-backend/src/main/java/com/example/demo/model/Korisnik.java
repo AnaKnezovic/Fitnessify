@@ -1,9 +1,12 @@
 package com.example.demo.model;
-
 import java.time.LocalDate;
+
+import com.example.demo.model.enums.Uloga;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -11,6 +14,7 @@ import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
 
 
 @Entity
@@ -45,5 +49,8 @@ public class Korisnik {
     @Column(name = "DatumRegistracije")
     private LocalDate datumRegistracije;
 
-    // Getters and Setters (we will add these next!)
+    @Enumerated(EnumType.STRING)
+    @Column(name = "Uloga")
+    private Uloga uloga;
+
 }
